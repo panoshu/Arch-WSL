@@ -1,0 +1,33 @@
+name: Continuous Deployment
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  publish-github:
+    name: Publish on Github
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install dependencies for build (Apt)
+        shell: bash
+        run: |
+          sudo env DEBIAN_FRONTEND=noninteractive apt update -y && \
+          sudo env DEBIAN_FRONTEND=noninteractive apt install -y libarchive-tools
+      - name: Build
+        run: |
+          make
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            Arch.zip
+            Arch.zip.sha256sum
+            rootfs.tar.gz
+            rootfs.tar.gz.sha256sum
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
