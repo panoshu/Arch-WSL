@@ -87,8 +87,7 @@ bootstrap:
 	$(DLR) $(DLR_FLAGS) $(BOOTSTRAP_URL) -o archlinux-bootstrap-x86_64.tar.zst
 
 	@echo -e '\e[1;32mExtracting archlinux-bootstrap...\e[0m'
-	sudo apt-get install zstd
-	sudo bsdtar -I zstd -xvf archlinux-bootstrap-x86_64.tar.zst
+	sudo tar -I zstd -xvf archlinux-bootstrap-x86_64.tar.zst
 	sudo chmod +x root.x86_64
 
 clean: cleanall
