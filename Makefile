@@ -2,7 +2,7 @@ OUT_TGZ=rootfs.tar.gz
 
 DLR=curl
 DLR_FLAGS=-L
-BOOTSTRAP_URL=http://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-bootstrap-x86_64.tar.gz
+BOOTSTRAP_URL=https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-bootstrap-x86_64.tar.zst
 PACMAN_CONF_URL=https://gitlab.archlinux.org/archlinux/archiso/-/raw/master/configs/releng/pacman.conf
 MIRRORLIST_URL=https://archlinux.org/mirrorlist/all/
 PKGS=archlinux-keyring wget curl vim less sudo base base-devel zip unzip man inetutils openbsd-netcat openssh tk zsh
@@ -79,15 +79,15 @@ mount_temp: bootstrap
 	sudo mount --bind /sys root.x86_64/sys
 
 bootstrap:
-	@echo -e '\e[1;32mDownloading archlinux-bootstrap-x86_64.tar.gz...\e[m'
+	@echo -e '\e[1;32mDownloading archlinux-bootstrap-x86_64.tar.zst...\e[m'
 
 	-sudo rm -rf Arch.zip*
 	-sudo rm -rf rootfs.tar.gz*
 
-	$(DLR) $(DLR_FLAGS) $(BOOTSTRAP_URL) -o archlinux-bootstrap-x86_64.tar.gz
+	$(DLR) $(DLR_FLAGS) $(BOOTSTRAP_URL) -o archlinux-bootstrap-x86_64.tar.zst
 
 	@echo -e '\e[1;32mExtracting archlinux-bootstrap...\e[0m'
-	sudo bsdtar -zxpf archlinux-bootstrap-x86_64.tar.gz
+	sudo tar -I zstd -xvf archlinux-bootstrap-x86_64.tar.zst
 	sudo chmod +x root.x86_64
 
 clean: cleanall
