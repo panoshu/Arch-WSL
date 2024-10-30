@@ -35,3 +35,20 @@ LC_TIME=C.UTF-8
 ## rootfs.tar.gz with wsldl
 
 Add [yuk7/wsldl](https://github.com/yuk7/wsldl/releases/latest/download/icons.zip)
+
+
+## sudo systemctl start hangs on supported WSL version
+
+### solution a
+
+- modify ExecStart in `/usr/lib/systemd/system/systemd-networkd-wait-online.service`.
+- The new ExecStart should be:
+  `ExecStart=/usr/lib/systemd/systemd-networkd-wait-online -i eth0 --any --timeout=10`
+- restart WSL: `wsl --shutdown`
+- check again: `systemctl status`
+
+### solution b
+
+- `sudo systemctl list-jobs |grep running`
+- `sudo systemctl cancel <job-number>`
+- `sudo systemctl disable systemd-networkd-wait-online`
