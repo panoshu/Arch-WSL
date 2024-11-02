@@ -2,11 +2,11 @@
 
 ## rootfs.tar.gz
 
-Build with lastest [archlinux-bootstrap-x86_64](http://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-bootstrap-x86_64.tar.gz)
+Build with lastest [archlinux-bootstrap-x86_64](http://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-bootstrap-x86_64.tar.zst)
 
 ### packages
 
-`wget curl vim less sudo base base-devel zip unzip man inetutils openbsd-netcat openssh tk zsh`
+`archlinux-keyring bc cpio zstd git wget curl vim less sudo base base-devel zip unzip man inetutils openbsd-netcat openssh tk zsh`
 
 ### wsl.conf
 
@@ -49,6 +49,6 @@ Add [yuk7/wsldl](https://github.com/yuk7/wsldl/releases/latest/download/icons.zi
 
 ### solution b
 
-- `sudo systemctl list-jobs |grep running`
+- `sudo systemctl list-jobs | grep running`
 - `sudo systemctl cancel <job-number>`
 - `sudo systemctl disable systemd-networkd-wait-online`
