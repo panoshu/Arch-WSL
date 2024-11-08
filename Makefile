@@ -5,7 +5,7 @@ DLR_FLAGS=-L
 BOOTSTRAP_URL=https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-bootstrap-x86_64.tar.zst
 PACMAN_CONF_URL=https://gitlab.archlinux.org/archlinux/archiso/-/raw/master/configs/releng/pacman.conf
 MIRRORLIST_URL=https://archlinux.org/mirrorlist/all/
-PKGS=archlinux-keyring bc cpio zstd git wget curl vim less sudo base base-devel zip unzip man inetutils openbsd-netcat openssh tk zsh
+PKGS=archlinux-keyring bc cpio zstd git wget bison flex pahole aarch64-linux-gnu-gcc curl vim less sudo base base-devel zip unzip man inetutils openbsd-netcat openssh tk zsh
 
 all: $(OUT_TGZ)
 
