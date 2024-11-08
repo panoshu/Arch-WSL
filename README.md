@@ -6,7 +6,7 @@ Build with lastest [archlinux-bootstrap-x86_64](http://mirrors.edge.kernel.org/a
 
 ### packages
 
-`archlinux-keyring bc cpio zstd git wget curl vim less sudo base base-devel zip unzip man inetutils openbsd-netcat openssh tk zsh`
+`git wget curl vim less sudo zip unzip`
 
 ### wsl.conf
 
@@ -36,6 +36,18 @@ LC_TIME=C.UTF-8
 
 Add [yuk7/wsldl](https://github.com/yuk7/wsldl/releases/latest/download/icons.zip)
 
+
+## add packages
+
+### add yay AUR
+
+`sudo pacman -S yay`
+
+### base packages
+
+- network tools: `inetutils openbsd-netcat openssh`
+- make tools: `aarch64-linux-gnu-gcc base base-devel bc cpio bison flex pahole`
+- others: `man zsh tk`
 
 ## sudo systemctl start hangs on supported WSL version
 
